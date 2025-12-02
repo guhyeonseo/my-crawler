@@ -5,7 +5,7 @@ from datetime import datetime
 import schedule
 import time
 
-MONGO_URI = "mongodb+srv://myuser:mystrongpassword123!@cluster0.sqzxe33.mongodb.net/?appName=Cluster0"
+MONGO_URI = "mongodb+srv://myuser:mypassword123!@cluster0.sqzxe33.mongodb.net/?appName=Cluster0"
 client = MongoClient(MONGO_URI)
 db = client["newsdb"]
 collection = db["news"]
