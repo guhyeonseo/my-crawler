@@ -1,0 +1,6 @@
+services:
+  - type: worker
+    name: my-crawler
+    runtime: python
+    startCommand: "python crawler.py"
+    autoDeploy: true
