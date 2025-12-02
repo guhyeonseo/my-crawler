@@ -13,6 +13,7 @@ collection = db["news"]
 
 collection.create_index("link", unique=True)
 
+
 def fetch_headlines(page):
     url = f"https://news.naver.com/section/105?page={page}"
     response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -62,10 +63,25 @@ def run_crawler():
     print("===== 크롤링 종료 =====\n")
 
 
+# 🔥 Render 무료 플랜 Sleep 방지용 Ping 함수
+def keep_alive():
+    try:
+        requests.get("https://my-crawler-fv8n.onrender.com/")
+        print("Keep-alive 요청 전송")
+    except Exception as e:
+        print("Keep-alive 실패:", e)
+
+
 def start_crawler_background():
     def job():
+        # 최초 1회 크롤링 실행
         run_crawler()
+
+        # 1분마다 크롤링 실행
         schedule.every(60).seconds.do(run_crawler)
+
+        # 🔥 10분마다 Keep-alive 실행
+        schedule.every(10).minutes.do(keep_alive)
 
         while True:
             schedule.run_pending()
