@@ -66,10 +66,10 @@ def run_crawler():
 
 
 # 🔥 10초마다 실행
-schedule.every(600).seconds.do(run_crawler)
+schedule.every(60).seconds.do(run_crawler)
 
 if __name__ == "__main__":
-    print("자동 크롤러 실행 중... (10분마다 실행)")
+    print("자동 크롤러 실행 중... (1분마다 실행)")
     run_crawler()  # 최초 1번 실행
 
     while True:
