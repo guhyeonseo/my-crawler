@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from pymongo import MongoClient
 from crawler import start_crawler_background
+import os
 
 app = Flask(__name__)
 
@@ -22,4 +23,6 @@ def get_news():
     return jsonify(data)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    # Render가 제공하는 PORT 사용해야 정상 실행됨
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
